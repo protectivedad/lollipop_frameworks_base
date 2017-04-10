@@ -137,10 +137,6 @@ public final class SystemServer {
             "com.android.server.wifi.p2p.WifiP2pService";
     private static final String ETHERNET_SERVICE_CLASS =
             "com.android.server.ethernet.EthernetService";
-// add by blb 2015.3.3
-    private static final String PPPOE_SERVICE_CLASS =
-            "com.android.server.pppoe.PppoeService";
-// end add
     private static final String JOB_SCHEDULER_SERVICE_CLASS =
             "com.android.server.job.JobSchedulerService";
     private static final String PERSISTENT_DATA_BLOCK_PROP = "ro.frp.pst";
@@ -692,17 +688,7 @@ public final class SystemServer {
                 if (mPackageManager.hasSystemFeature(PackageManager.FEATURE_ETHERNET)) {
                     mSystemServiceManager.startService(ETHERNET_SERVICE_CLASS);
                 }
-//add by blb
-                String isCts = SystemProperties.get("net.pppoe.cts");
-                if (mPackageManager.hasSystemFeature(PackageManager.FEATURE_PPPOE) && !"true".equals(isCts)) {
-                    try {
-                        Slog.i(TAG, "PppoeService");
-                        mSystemServiceManager.startService(PPPOE_SERVICE_CLASS);
-                    }catch (Throwable e) {
-                        reportWtf("start PppoeService error ", e);
-                    }
-                }
-//end blb
+
                 try {
                     Slog.i(TAG, "Connectivity Service");
                     connectivity = new ConnectivityService(
