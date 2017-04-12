@@ -67,7 +67,7 @@ public class SignalClusterView
 	private static Map<Integer,Integer>  mIconTint=new HashMap<>(2);
 
     ViewGroup mWifiGroup;
-    ImageView mVpn, mWifi, mAirplane, mNoSims, mEthernet;
+    ImageView mVpn, mWifi, mAirplane, mNoSims;
     View mWifiAirplaneSpacer;
     View mWifiSignalSpacer;
     LinearLayout mMobileSignalGroup;
@@ -123,7 +123,6 @@ public class SignalClusterView
         mWifi           = (ImageView) findViewById(R.id.wifi_signal);
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mNoSims         = (ImageView) findViewById(R.id.no_sims);
-        mEthernet       = (ImageView) findViewById(R.id.ethernet);
         mWifiAirplaneSpacer =         findViewById(R.id.wifi_airplane_spacer);
         mWifiSignalSpacer =           findViewById(R.id.wifi_signal_spacer);
         mMobileSignalGroup = (LinearLayout) findViewById(R.id.mobile_signal_group);
@@ -227,14 +226,6 @@ public class SignalClusterView
     }
 
     @Override
-    public void setEthernetIndicators(boolean visible, int ethernetIconId) {
-        mEthernetVisible = visible;
-        mEthernetIconId = ethernetIconId;
-        Log.e("blb","mmEthernetVisible: "+visible);
-        apply();
-    }
-
-    @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // Standard group layout onPopulateAccessibilityEvent() implementations
         // ignore content description, so populate manually
@@ -328,15 +319,8 @@ public class SignalClusterView
 
         mNoSims.setVisibility(mNoSimsVisible ? View.VISIBLE : View.GONE);
 
-        if (mEthernetVisible) {
-            mEthernet.setImageResource(mEthernetIconId);
-            mEthernet.setVisibility(View.VISIBLE);
-        } else {
-            mEthernet.setVisibility(View.GONE);
-        }
-
         boolean anythingVisible = mNoSimsVisible || mWifiVisible || mIsAirplaneMode
-                || anyMobileVisible || mVpnVisible || mEthernetVisible;
+                || anyMobileVisible || mVpnVisible;
         setPaddingRelative(0, 0, anythingVisible ? mEndPadding : mEndPaddingNothingVisible, 0);
     }
 

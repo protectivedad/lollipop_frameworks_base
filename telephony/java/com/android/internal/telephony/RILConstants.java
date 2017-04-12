@@ -24,7 +24,6 @@ package com.android.internal.telephony;
  * Also they should all probably be static final.
  */
 
-import android.os.SystemProperties;
 import android.telephony.TelephonyManager;
 /**
  * {@hide}

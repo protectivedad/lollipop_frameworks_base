@@ -3227,8 +3227,7 @@ public class TelephonyManager {
      */
     public int getTetherApnRequired() {
         try {
-            if (getITelephony() != null)
-                return getITelephony().getTetherApnRequired();
+            return getITelephony().getTetherApnRequired();
         } catch (RemoteException ex) {
             Rlog.e(TAG, "hasMatchedTetherApnSetting RemoteException", ex);
         } catch (NullPointerException ex) {

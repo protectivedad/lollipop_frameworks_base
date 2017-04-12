@@ -161,10 +161,7 @@ public class CalendarDialog implements OnDateSelectedListener{
         }
         Log.d(TAG, "closeCalendar...");
     }
-  
-    public boolean isCalendarShow(){
-        return mDateCenter.isShowing();
-    }
+
     /**
      * Simulate an API call to show how to add decorators
      */

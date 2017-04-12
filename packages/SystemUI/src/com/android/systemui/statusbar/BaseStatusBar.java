@@ -2197,9 +2197,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         boolean accessibilityForcesLaunch = isFullscreen
                 && mAccessibilityManager.isTouchExplorationEnabled();
 
-         if(mContext.getResources().getConfiguration().enableMultiWindow()&&!isFullscreen)
-              isFullscreen = true&&!sbn.isOngoing();
-
         boolean interrupt = (isFullscreen || (isHighPriority && (isNoisy || hasTicker)))
                 && isAllowed
                 && !accessibilityForcesLaunch

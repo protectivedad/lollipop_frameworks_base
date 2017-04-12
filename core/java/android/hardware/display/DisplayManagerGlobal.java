@@ -45,7 +45,7 @@ import java.util.ArrayList;
  */
 public final class DisplayManagerGlobal {
     private static final String TAG = "DisplayManager";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     // True if display info and display ids should be cached.
     //
@@ -90,7 +90,6 @@ public final class DisplayManagerGlobal {
         synchronized (DisplayManagerGlobal.class) {
             if (sInstance == null) {
                 IBinder b = ServiceManager.getService(Context.DISPLAY_SERVICE);
-				//Log.e(TAG, "getInstance: b=" + b);
                 if (b != null) {
                     sInstance = new DisplayManagerGlobal(IDisplayManager.Stub.asInterface(b));
                 }
@@ -109,7 +108,6 @@ public final class DisplayManagerGlobal {
     public DisplayInfo getDisplayInfo(int displayId) {
         try {
             synchronized (mLock) {
-				//Log.d(TAG, "getDisplayInfo");
                 DisplayInfo info;
                 if (USE_CACHE) {
                     info = mDisplayInfoCache.get(displayId);

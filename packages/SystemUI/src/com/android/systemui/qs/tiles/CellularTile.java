@@ -200,11 +200,6 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
         public void onMobileDataEnabled(boolean enabled) {
             mDetailAdapter.setMobileDataEnabled(enabled);
         }
-
-        @Override
-        public int getSlotId() {
-            return 0;
-        }
     };
 
     private final class CellularDetailAdapter implements DetailAdapter {
